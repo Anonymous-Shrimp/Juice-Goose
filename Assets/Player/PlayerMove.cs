@@ -30,10 +30,12 @@ public class PlayerMove : MonoBehaviour
     private ParticleSystem death;
     public GameObject featherParticle;
     private ParticleSystem feather;
+    public Animator deathAnimation;
 
     [Header("Misc")]
     public Transform forceBar;
     public Transform forceParent;
+    
 
 
     [HideInInspector]
@@ -133,6 +135,10 @@ public class PlayerMove : MonoBehaviour
             Rigid.gravityScale = 0;
             gameObject.SetActive(false);
             FindObjectOfType<CameraShake>().ShakeIt();
+            if(rewind.juice <= 0)
+            {
+                deathAnimation.SetTrigger("Open");
+            }
             
         }
         else

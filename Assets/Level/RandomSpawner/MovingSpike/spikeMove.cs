@@ -32,17 +32,13 @@ public class spikeMove : MonoBehaviour
         }
         
 
-        void FixedUpdate()
-        {
-            
-        }
+        
         void Rewind()
         {
             if (pointsInTime.Count > 0)
             {
                 float pointInTime = pointsInTime[0];
                 cart.m_Position = pointInTime;
-                print(pointInTime);
 
                 pointsInTime.RemoveAt(0);
             }
