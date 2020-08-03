@@ -7,15 +7,20 @@ public class TimeBody : MonoBehaviour
 
     bool isRewinding = false;
 
-    public float recordTime = 5f;
+    public float recordTime = 10f;
 
-    List<PointInTime> pointsInTime;
+    public List<PointInTime> pointsInTime;
 
     Rigidbody2D rb;
+
+    public rewindManager manager;
+
+    private float forceAmmt = 0;
 
     // Use this for initialization
     void Start()
     {
+        manager = FindObjectOfType<rewindManager>();
         pointsInTime = new List<PointInTime>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -23,18 +28,22 @@ public class TimeBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (manager.rewind)
             StartRewind();
-        if (Input.GetKeyUp(KeyCode.Return))
+        else
             StopRewind();
     }
 
     void FixedUpdate()
     {
         if (isRewinding)
+        {
             Rewind();
+        }
         else
+        {
             Record();
+        }
     }
 
     void Rewind()
@@ -44,7 +53,12 @@ public class TimeBody : MonoBehaviour
             PointInTime pointInTime = pointsInTime[0];
             transform.position = pointInTime.position;
             transform.rotation = pointInTime.rotation;
-            //rb.velocity = pointInTime.velocity;
+            rb.velocity = pointInTime.velocity;
+            if (GetComponent<PlayerMove>() != null)
+            {
+                GetComponent<PlayerMove>().forceAmnt = pointInTime.forceAmmt;
+            }
+            
             pointsInTime.RemoveAt(0);
         }
         else
@@ -60,8 +74,15 @@ public class TimeBody : MonoBehaviour
         {
             pointsInTime.RemoveAt(pointsInTime.Count - 1);
         }
-
-        pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity));
+        if(GetComponent<PlayerMove>() != null)
+        {
+            forceAmmt = GetComponent<PlayerMove>().forceAmnt;
+        }
+        else
+        {
+            forceAmmt = 0;
+        }
+        pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity, forceAmmt));
     }
 
     public void StartRewind()
