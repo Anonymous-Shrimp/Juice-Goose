@@ -61,6 +61,7 @@ public class spawner : MonoBehaviour
 {
     public spawnItems[] items;
     public GameObject player;
+    public List<float> dontSpawnZone;
     // Start is called before the first frame update
     void Start()
     {
