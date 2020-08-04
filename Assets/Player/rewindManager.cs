@@ -35,7 +35,7 @@ public class rewindManager : MonoBehaviour
         {
             FX.weight += Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.LeftControl) && juice > 0 && !FindObjectOfType<changeScore>().hasControl)
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && juice > 0 && !FindObjectOfType<changeScore>().hasControl)
         {
             player.gameObject.SetActive(true);
             player.isDead = false;

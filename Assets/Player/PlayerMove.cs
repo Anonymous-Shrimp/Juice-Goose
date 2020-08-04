@@ -152,7 +152,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && !FindObjectOfType<changeScore>().hasControl)
             {
-                Rigid.AddForce(new Vector2(0, flyForce.y *  2f));
+                Rigid.AddForce(new Vector2(0, flyForce.y *  * 1.5f));
             }
             Rigid.AddForce(new Vector2(1f, 0));
             if(Rigid.velocity.x > 100)
@@ -185,26 +185,34 @@ public class PlayerMove : MonoBehaviour
         else
         {
             forceParent.gameObject.SetActive(false);
-            if (Input.GetKey(KeyCode.LeftShift) && !FindObjectOfType<changeScore>().hasControl)
+            if (Input.GetAxis("Vertical") < 0 && !FindObjectOfType<changeScore>().hasControl)
             {
+                if(Rigid.velocity.y > 0)
+                {
+                    Rigid.velocity = new Vector3(Rigid.velocity.x, 0, 0);
+                }
                 if (Rigid.velocity.x > 40)
                 {
-                    Rigid.AddForce(new Vector2(0, diveForce.y * 2f));
+                    Rigid.AddForce(new Vector2(0, diveForce.y * 1.5f));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x * 2, diveForce.y * 2f));
+                    Rigid.AddForce(new Vector2(diveForce.x * 2, diveForce.y * 1.5f));
                 }
             }
-            else if (Input.GetKey(KeyCode.Space) && !FindObjectOfType<changeScore>().hasControl)
+            else if (Input.GetAxis("Vertical") > 0 && !FindObjectOfType<changeScore>().hasControl)
             {
+                if (Rigid.velocity.y < 0)
+                {
+                    Rigid.velocity = new Vector3(Rigid.velocity.x, 0, 0);
+                }
                 if (Rigid.velocity.x < 2)
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x / 2, flyForce.y * 2f));
+                    Rigid.AddForce(new Vector2(diveForce.x / 2, flyForce.y * 1.5f));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(flyForce.x, flyForce.y * 2f));
+                    Rigid.AddForce(new Vector2(flyForce.x, flyForce.y * 1.5f));
                 }
             }
             else

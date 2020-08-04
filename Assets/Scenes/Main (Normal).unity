@@ -2454,7 +2454,7 @@ MonoBehaviour:
   barColor: {fileID: 2049308884}
   rewindAnimation: {fileID: 1188988592}
   slurp: {fileID: 2912669216638973629, guid: 96f91240d6356e041b80273675f6cb61, type: 3}
-  hardMode: 1
+  hardMode: 0
   forceAmnt: 0
 --- !u!1 &1735378463
 GameObject:
