@@ -32,9 +32,10 @@ public class PlayerMove : MonoBehaviour
     private ParticleSystem feather;
     public Animator deathAnimation;
 
-    [Header("Misc")]
+    [Header("Force Bar")]
     public Transform forceBar;
     public Transform forceParent;
+    public Transform barColor;
     
 
 
@@ -52,6 +53,11 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!FindObjectOfType<changeScore>().hasControl)
+        {
+            forceParent.GetComponent<SpriteRenderer>().color = new Color(forceParent.GetComponent<SpriteRenderer>().color.r, forceParent.GetComponent<SpriteRenderer>().color.b, forceParent.GetComponent<SpriteRenderer>().color.g,1);
+            barColor.GetComponent<SpriteRenderer>().color = new Color(forceParent.GetComponent<SpriteRenderer>().color.r, forceParent.GetComponent<SpriteRenderer>().color.b, forceParent.GetComponent<SpriteRenderer>().color.g, 1);
+        }
         if(Rigid.velocity.magnitude > 5)
         {
             camSizeTarget = Rigid.velocity.magnitude * 1.5f;

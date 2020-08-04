@@ -266,7 +266,7 @@ MonoBehaviour:
   OnPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1650394337}
+      - m_Target: {fileID: 1650394340}
         m_MethodName: OpenLinkJSPlugin
         m_Mode: 5
         m_Arguments:
@@ -443,7 +443,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 712291543}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -851,11 +851,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 831569136}
-  - {fileID: 1811560712}
   - {fileID: 928392481}
   - {fileID: 1358375056}
   - {fileID: 233837491}
   - {fileID: 1650394335}
+  - {fileID: 1811560712}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -973,7 +973,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 712291543}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1132,8 +1132,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -132.6}
-  m_SizeDelta: {x: 409.9939, y: 70.5611}
+  m_AnchoredPosition: {x: 0, y: -125.1}
+  m_SizeDelta: {x: 409.9939, y: 85.55914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963755416
 MonoBehaviour:
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   OnPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1650394337}
+      - m_Target: {fileID: 1650394340}
         m_MethodName: OpenLinkJSPlugin
         m_Mode: 5
         m_Arguments:
@@ -1703,7 +1703,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 712291543}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1972,7 +1972,7 @@ MonoBehaviour:
   OnPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1650394337}
+      - m_Target: {fileID: 1650394340}
         m_MethodName: OpenLinkJSPlugin
         m_Mode: 5
         m_Arguments:
@@ -1994,8 +1994,6 @@ GameObject:
   - component: {fileID: 1650394335}
   - component: {fileID: 1650394339}
   - component: {fileID: 1650394338}
-  - component: {fileID: 1650394337}
-  - component: {fileID: 1650394336}
   - component: {fileID: 1650394340}
   m_Layer: 5
   m_Name: About
@@ -2022,52 +2020,13 @@ RectTransform:
   - {fileID: 1107974769}
   - {fileID: 963755415}
   m_Father: {fileID: 712291543}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 1.9788818}
   m_SizeDelta: {x: -236.19952, y: -147.6247}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1650394336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650394334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0728876d7525334c908659eaa19bd0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnPress:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1650394337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650394334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26c1381be96cf9488de6689fc10a8cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Field: {fileID: 0}
 --- !u!114 &1650394338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,7 +2191,7 @@ PrefabInstance:
     - target: {fileID: 5499819386938678644, guid: 84876aa0830bce340a239d8125ba4d77,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5499819386938678644, guid: 84876aa0830bce340a239d8125ba4d77,
         type: 3}
@@ -2307,7 +2266,7 @@ PrefabInstance:
     - target: {fileID: 7172052478791871119, guid: 84876aa0830bce340a239d8125ba4d77,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84876aa0830bce340a239d8125ba4d77, type: 3}

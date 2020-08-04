@@ -6,21 +6,20 @@ public class Link : MonoBehaviour
 {
 
 	public InputField Field;
-    string link;
 
-	public void OpenLinkJS()
+	public void OpenLinkJS(string _link)
 	{
-        Field.text = link;
+        Field.text = _link;
 		Application.ExternalEval("window.open('"+Field.text+"');");
 	}
 
 	public void OpenLinkJSPlugin(string _link)
 	{
-        link = _link;
-		#if !UNITY_EDITOR
+        Field.text = _link;
+#if !UNITY_EDITOR
 		openWindow(Field.text);
-		#endif
-	}
+#endif
+    }
 
 	[DllImport("__Internal")]
 	private static extern void openWindow(string url);

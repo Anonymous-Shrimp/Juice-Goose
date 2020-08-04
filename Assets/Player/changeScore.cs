@@ -16,6 +16,8 @@ public class changeScore : MonoBehaviour
     public Vector3 birdPos;
     public bool hasControl = true;
     public float barSmooth = 1f;
+    public Animator bar;
+    public bool barFade;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class changeScore : MonoBehaviour
             cam.m_Lens.OrthographicSize = camSize;
             bird.position = birdPos;
             FindObjectOfType<followTarget>().smoothSpeed = barSmooth;
+            bar.SetBool("Fade", barFade);
         }
         scoreScript.canChange = canChangeScore;
     }

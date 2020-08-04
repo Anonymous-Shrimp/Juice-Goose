@@ -7,6 +7,7 @@ TagManager:
   - Juice
   - death
   - floor
+  - Wall
   layers:
   - Default
   - TransparentFX

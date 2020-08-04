@@ -1441,6 +1441,8 @@ MonoBehaviour:
   birdPos: {x: 0, y: 0, z: 0}
   hasControl: 1
   barSmooth: 1
+  bar: {fileID: 1460996163}
+  barFade: 0
 --- !u!1 &1460996159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1454,7 @@ GameObject:
   - component: {fileID: 1460996162}
   - component: {fileID: 1460996161}
   - component: {fileID: 1460996160}
+  - component: {fileID: 1460996163}
   m_Layer: 0
   m_Name: ForceBar
   m_TagString: Untagged
@@ -1539,6 +1542,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1460996163
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460996159}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f9d5b9949eb8024ba129feabd5d222d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1481484583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,10 +1875,10 @@ MonoBehaviour:
     spawnRange: {x: -7, y: 35}
     offset: {x: 1000, y: 0, z: 0}
     spawn: -1000
-  - name: Spike
+  - name: MovingSpike
     item: {fileID: 7047374367273181083, guid: d1f3dc1ad5583b949961b1d8224034e0, type: 3}
     isGrounded: 0
-    freq: 80
+    freq: 70
     spawnRange: {x: 0, y: 28}
     offset: {x: 1000, y: 0, z: 0}
     spawn: -1000
@@ -1942,7 +1964,7 @@ Transform:
   m_GameObject: {fileID: 1527798007}
   m_LocalRotation: {x: 0.000000029802322, y: -0.00000008940697, z: 0.000000011175871,
     w: 1}
-  m_LocalPosition: {x: -950, y: 3.0000029, z: -50}
+  m_LocalPosition: {x: -950, y: -3.9999971, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2277,7 +2299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728714392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -950, y: 3, z: 0}
+  m_LocalPosition: {x: -950, y: -4, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1796948682}
@@ -2348,6 +2370,7 @@ MonoBehaviour:
   deathAnimation: {fileID: 1329440257}
   forceBar: {fileID: 1294625887}
   forceParent: {fileID: 1460996162}
+  barColor: {fileID: 2049308884}
   forceAmnt: 0
 --- !u!1 &1735378463
 GameObject:
@@ -2476,7 +2499,7 @@ Transform:
   m_GameObject: {fileID: 1774359637}
   m_LocalRotation: {x: 0.000000029802322, y: -0.00000008940697, z: 0.000000011175871,
     w: 1}
-  m_LocalPosition: {x: -950, y: 3.0000029, z: -50}
+  m_LocalPosition: {x: -950, y: -3.9999971, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2106030041}
@@ -3458,6 +3481,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FX
+      objectReference: {fileID: 0}
+    - target: {fileID: 3398850652848154531, guid: 83e648bb3e5e7054495ab918c4bbc4fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3398850652848154533, guid: 83e648bb3e5e7054495ab918c4bbc4fa,
         type: 3}

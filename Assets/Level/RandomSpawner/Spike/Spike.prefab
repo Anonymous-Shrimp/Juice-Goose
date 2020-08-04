@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 822806941196826963}
   - component: {fileID: 3157583612348552811}
   - component: {fileID: 2391484507213357390}
+  - component: {fileID: 7604496176162154283}
   m_Layer: 0
   m_Name: Spike
   m_TagString: death
@@ -109,5 +110,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7182d1e1bb492294780cbeeb3dcc89aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7604496176162154283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822806941196826962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e892fd62bc9997f4faf6cf2776dd9df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
