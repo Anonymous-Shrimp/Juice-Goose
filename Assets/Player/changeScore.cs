@@ -18,6 +18,7 @@ public class changeScore : MonoBehaviour
     public float barSmooth = 1f;
     public Animator bar;
     public bool barFade;
+    public bool canFade;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +35,12 @@ public class changeScore : MonoBehaviour
             scoreText.color = textColor;
             cam.m_Lens.OrthographicSize = camSize;
             bird.position = birdPos;
-            FindObjectOfType<followTarget>().smoothSpeed = barSmooth;
+            if (FindObjectOfType<followTarget>() != null)
+            {
+                FindObjectOfType<followTarget>().smoothSpeed = barSmooth;
+            }
             bar.SetBool("Fade", barFade);
+            bar.SetBool("CanFade", canFade);
         }
         scoreScript.canChange = canChangeScore;
     }

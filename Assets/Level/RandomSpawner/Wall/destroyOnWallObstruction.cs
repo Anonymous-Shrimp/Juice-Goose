@@ -25,11 +25,11 @@ public class destroyOnWallObstruction : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
+    private void Update()
     {
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Wall"))
         {
-            if(Vector3.Distance(transform.position, g.transform.position) < 7)
+            if(Vector3.Distance(transform.position, g.transform.position) < 10)
             {
                 Destroy(gameObject);
             }
