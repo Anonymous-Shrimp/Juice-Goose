@@ -9,26 +9,49 @@ public class spikeMove : MonoBehaviour
     public CinemachineDollyCart cart;
     float recordTime = 5f;
     rewindManager manager;
+    menuRewind managerMenu;
+
     public List<float> pointsInTime;
     bool isRewinding = false;
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(0.2f, 0.5f);
-        manager = FindObjectOfType<rewindManager>();
+        speed = Random.Range(0.2f, 0.3f);
+        if (FindObjectOfType<rewindManager>() != null)
+        {
+            manager = FindObjectOfType<rewindManager>();
+        }else if (FindObjectOfType<menuRewind>() != null)
+        {
+            managerMenu = FindObjectOfType<menuRewind>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (manager.rewind)
+        if (manager != null)
         {
-            Rewind();
+            if (manager.rewind)
+            {
+                Rewind();
+            }
+            else
+            {
+                cart.m_Position += speed;
+                Record();
+            }
         }
         else
         {
-            cart.m_Position += speed;
-            Record();
+            if (managerMenu.rewind)
+            {
+                Rewind();
+            }
+            else
+            {
+                cart.m_Position += speed;
+                Record();
+            }
         }
         
 
@@ -39,7 +62,7 @@ public class spikeMove : MonoBehaviour
             {
                 float pointInTime = pointsInTime[0];
                 cart.m_Position = pointInTime;
-
+                isRewinding = true;
                 pointsInTime.RemoveAt(0);
             }
             else

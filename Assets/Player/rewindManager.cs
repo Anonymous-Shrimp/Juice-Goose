@@ -20,6 +20,7 @@ public class rewindManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bar = FindObjectOfType<Slider>();
         FX.weight = FXWeight;
         player = FindObjectOfType<PlayerMove>();
     }

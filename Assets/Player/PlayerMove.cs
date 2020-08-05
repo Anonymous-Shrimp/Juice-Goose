@@ -68,7 +68,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Rigid.velocity);
+
         if (!FindObjectOfType<changeScore>().hasControl)
         {
             forceParent.GetComponent<SpriteRenderer>().color = new Color(forceParent.GetComponent<SpriteRenderer>().color.r, forceParent.GetComponent<SpriteRenderer>().color.b, forceParent.GetComponent<SpriteRenderer>().color.g,1);
@@ -86,7 +86,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (hardMode)
         {
-            if (Input.GetKey(KeyCode.Space) && !FindObjectOfType<changeScore>().hasControl)
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) && !FindObjectOfType<changeScore>().hasControl))
             {
                 if (Rigid.velocity.x > 40)
                 {
@@ -103,7 +103,7 @@ public class PlayerMove : MonoBehaviour
                     forceAmnt = forceCap;
                 }
             }
-            else if (forceAmnt > 0 && !Input.GetKey(KeyCode.Space))
+            else if (forceAmnt > 0 && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
             {
                 if (Rigid.velocity.x < 2)
                 {
@@ -187,32 +187,36 @@ public class PlayerMove : MonoBehaviour
             forceParent.gameObject.SetActive(false);
             if (Input.GetAxis("Vertical") < 0 && !FindObjectOfType<changeScore>().hasControl)
             {
+                /*
                 if(Rigid.velocity.y > 0)
                 {
                     Rigid.velocity = new Vector3(Rigid.velocity.x, 0, 0);
                 }
+                */
                 if (Rigid.velocity.x > 40)
                 {
-                    Rigid.AddForce(new Vector2(0, diveForce.y * 1.5f));
+                    Rigid.AddForce(new Vector2(0, diveForce.y * 5f * -Input.GetAxis("Vertical")));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x * 2, diveForce.y * 1.5f));
+                    Rigid.AddForce(new Vector2(diveForce.x * 2, diveForce.y * 5f * -Input.GetAxis("Vertical")));
                 }
             }
             else if (Input.GetAxis("Vertical") > 0 && !FindObjectOfType<changeScore>().hasControl)
             {
+                /*
                 if (Rigid.velocity.y < 0)
                 {
                     Rigid.velocity = new Vector3(Rigid.velocity.x, 0, 0);
                 }
+                */
                 if (Rigid.velocity.x < 2)
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x / 2, flyForce.y * 1.5f));
+                    Rigid.AddForce(new Vector2(diveForce.x / 2, flyForce.y * 5f * Input.GetAxis("Vertical")));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(flyForce.x, flyForce.y * 1.5f));
+                    Rigid.AddForce(new Vector2(flyForce.x, flyForce.y * 5f * Input.GetAxis("Vertical")));
                 }
             }
             else
@@ -306,7 +310,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Juice"))
         {
-            rewind.juice += 0.3f;
+            rewind.juice += 0.5f;
             slurpParticle = Instantiate(slurp, collision.transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
             slurpParticle.Play();
             slurpParticle.loop = false;
