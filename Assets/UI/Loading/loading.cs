@@ -9,7 +9,6 @@ public class loading : MonoBehaviour
     public GameObject loadingScreen;
     public Animator anim;
     public PauseUI pause;
-
     
 
     public void LoadLevel(int sceneIndex)
@@ -56,6 +55,7 @@ public class loading : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        loadingScreen.SetActive(true);
         StartCoroutine(wait(1));
     }
 

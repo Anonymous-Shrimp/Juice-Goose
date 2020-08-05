@@ -20,10 +20,12 @@ public class PlayerMove : MonoBehaviour
     public Vector2 flyForce;
     public Vector2 normalForce;
     public float forceCap = 6;
+    public float groundSpeed = 0.2f;
     
     [Header("Rewind")]
     public rewindManager rewind;
-    
+    public Animator rewindAnimation;
+
     [Header("Death")]
     public bool isDead = false;
     public GameObject deathParticle;
@@ -36,12 +38,13 @@ public class PlayerMove : MonoBehaviour
     public Transform forceBar;
     public Transform forceParent;
     public Transform barColor;
-
-    [Header("Misc")]
-    public Animator rewindAnimation;
+    
+    [Header("Other")]
+    bool isGrounded = true;
     public GameObject slurp;
     private ParticleSystem slurpParticle;
     public bool hardMode = true;
+    
     
 
 
@@ -103,7 +106,7 @@ public class PlayerMove : MonoBehaviour
                     forceAmnt = forceCap;
                 }
             }
-            else if (forceAmnt > 0 && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
+            else if (forceAmnt > 0 && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && !FindObjectOfType<changeScore>().hasControl)
             {
                 if (Rigid.velocity.x < 2)
                 {
@@ -117,7 +120,14 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-                Rigid.AddForce(normalForce);
+                if (isGrounded)
+                {
+                    transform.Translate(new Vector3(groundSpeed * Time.deltaTime, 0, 0));
+                }
+                else
+                {
+                    Rigid.AddForce(normalForce);
+                }
             }
             if (Rigid.velocity.y > 50)
             {
@@ -195,11 +205,11 @@ public class PlayerMove : MonoBehaviour
                 */
                 if (Rigid.velocity.x > 40)
                 {
-                    Rigid.AddForce(new Vector2(0, diveForce.y * 5f * -Input.GetAxis("Vertical")));
+                    Rigid.AddForce(new Vector2(0, diveForce.y * 3f));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x * 2, diveForce.y * 5f * -Input.GetAxis("Vertical")));
+                    Rigid.AddForce(new Vector2(diveForce.x * 2, diveForce.y * 3f));
                 }
             }
             else if (Input.GetAxis("Vertical") > 0 && !FindObjectOfType<changeScore>().hasControl)
@@ -212,16 +222,23 @@ public class PlayerMove : MonoBehaviour
                 */
                 if (Rigid.velocity.x < 2)
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x / 2, flyForce.y * 5f * Input.GetAxis("Vertical")));
+                    Rigid.AddForce(new Vector2(diveForce.x / 2, flyForce.y * 3f));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(flyForce.x, flyForce.y * 5f * Input.GetAxis("Vertical")));
+                    Rigid.AddForce(new Vector2(flyForce.x, flyForce.y * 3f));
                 }
             }
             else
             {
-                Rigid.AddForce(new Vector2(normalForce.x,0));
+                if (isGrounded)
+                {
+                    transform.Translate(new Vector3(groundSpeed * Time.deltaTime, 0, 0));
+                }
+                else
+                {
+                    Rigid.AddForce(normalForce);
+                }
             }
             if (Rigid.velocity.y > 25)
             {
@@ -310,7 +327,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Juice"))
         {
-            rewind.juice += 0.5f;
+            rewind.juice += 0.3f;
             slurpParticle = Instantiate(slurp, collision.transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
             slurpParticle.Play();
             slurpParticle.loop = false;
@@ -328,7 +345,18 @@ public class PlayerMove : MonoBehaviour
         {
             isDead = true;
         }
+        if (collision.gameObject.CompareTag("floor"))
+        {
+            isGrounded = true;
+        }
         forceAmnt = 0;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("floor"))
+        {
+            isGrounded = false;
+        }
     }
 }
 

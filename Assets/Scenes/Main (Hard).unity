@@ -2360,6 +2360,7 @@ MonoBehaviour:
   normalForce: {x: 0.01, y: 0}
   forceCap: 1.5
   rewind: {fileID: 0}
+  rewindAnimation: {fileID: 1294171595}
   isDead: 0
   deathParticle: {fileID: 2833466334103138920, guid: 2b597ec1dc0d4dd4f960521a168f80a2,
     type: 3}
@@ -2369,7 +2370,6 @@ MonoBehaviour:
   forceBar: {fileID: 1294625887}
   forceParent: {fileID: 1460996162}
   barColor: {fileID: 2049308884}
-  rewindAnimation: {fileID: 1294171595}
   slurp: {fileID: 2912669216638973629, guid: 96f91240d6356e041b80273675f6cb61, type: 3}
   hardMode: 1
   forceAmnt: 0

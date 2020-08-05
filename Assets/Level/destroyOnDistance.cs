@@ -26,7 +26,11 @@ public class destroyOnDistance : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            
+            if (transform.position.x - player.position.x > destroyDistance + 100)
+            {
+                Destroy(gameObject);
+            }
+
         }
         if (FindObjectOfType<followTarget>() != null)
         {

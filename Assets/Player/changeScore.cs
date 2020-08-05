@@ -19,6 +19,8 @@ public class changeScore : MonoBehaviour
     public Animator bar;
     public bool barFade;
     public bool canFade;
+    private bool resetBoost;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,12 @@ public class changeScore : MonoBehaviour
                 FindObjectOfType<followTarget>().smoothSpeed = barSmooth;
             }
             bar.SetBool("Fade", barFade);
+            FindObjectOfType<PlayerMove>().forceAmnt = 0;
             bar.SetBool("CanFade", canFade);
+        }
+        else
+        {
+            
         }
         scoreScript.canChange = canChangeScore;
     }

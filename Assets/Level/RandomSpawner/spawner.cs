@@ -66,6 +66,10 @@ public class spawner : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerMove>().gameObject;
+        foreach (spawnItems i in items)
+        {
+            i.spawn = player.transform.position.x;
+        }
     }
 
     // Update is called once per frame
@@ -85,6 +89,7 @@ public class spawner : MonoBehaviour
                     Instantiate(i.item, i.offset + new Vector3(player.transform.position.x, 0) + new Vector3(0, Random.Range(i.spawnRange.x, i.spawnRange.y)), Quaternion.identity);
                 }
                 i.spawn = player.transform.position.x;
+                
             }
         }
     }
