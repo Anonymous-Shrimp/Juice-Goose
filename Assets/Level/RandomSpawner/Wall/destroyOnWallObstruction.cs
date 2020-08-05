@@ -31,7 +31,6 @@ public class destroyOnWallObstruction : MonoBehaviour
         {
             if(Vector3.Distance(transform.position, g.transform.position) < 10)
             {
-                print(Vector3.Distance(transform.position, g.transform.position));
                 Destroy(gameObject);
             }
             

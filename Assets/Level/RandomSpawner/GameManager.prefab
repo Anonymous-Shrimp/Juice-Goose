@@ -68,7 +68,7 @@ MonoBehaviour:
   - name: Juice
     item: {fileID: 8550582178918060219, guid: 6f8295c5920ffe84a8fe568fb999e6f3, type: 3}
     isGrounded: 0
-    freq: 30
+    freq: 70
     spawnRange: {x: -7, y: 35}
     offset: {x: 1000, y: 0, z: 0}
     spawn: -1000

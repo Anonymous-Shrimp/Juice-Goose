@@ -15,20 +15,19 @@ public class loading : MonoBehaviour
     public void LoadLevel(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
-        loadingScreen.SetActive(true);
     }
     public void LoadSameLevel()
     {
 
-        loadingScreen.SetActive(true);
+        
         StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex));
     }
 
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
-
-        if(!(SceneManager.GetActiveScene().buildIndex == 0))
+        yield return new WaitForSeconds(1);
+        if (!(SceneManager.GetActiveScene().buildIndex == 0))
         {
             pause.boolPause(false);
         }
