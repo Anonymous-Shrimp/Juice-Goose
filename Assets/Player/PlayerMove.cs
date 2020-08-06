@@ -41,6 +41,7 @@ public class PlayerMove : MonoBehaviour
     
     [Header("Other")]
     bool isGrounded = true;
+    public Animator anim;
     public GameObject slurp;
     private ParticleSystem slurpParticle;
     public bool hardMode = true;
@@ -55,6 +56,7 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         Rigid = GetComponent<Rigidbody2D>();
         rewind = FindObjectOfType<rewindManager>();
         if (hardMode)
@@ -71,7 +73,10 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(!(Rigid.velocity.y > -0.5f && Rigid.velocity.y < 0.5f))
+        {
+            isGrounded = false;
+        }
         if (!FindObjectOfType<changeScore>().hasControl)
         {
             forceParent.GetComponent<SpriteRenderer>().color = new Color(forceParent.GetComponent<SpriteRenderer>().color.r, forceParent.GetComponent<SpriteRenderer>().color.b, forceParent.GetComponent<SpriteRenderer>().color.g,1);
@@ -122,7 +127,7 @@ public class PlayerMove : MonoBehaviour
             {
                 if (isGrounded)
                 {
-                    transform.Translate(new Vector3(groundSpeed * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(groundSpeed * 2 * Time.deltaTime, 0, 0));
                 }
                 else
                 {
@@ -134,13 +139,17 @@ public class PlayerMove : MonoBehaviour
                 Rigid.velocity = new Vector3(Rigid.velocity.x, 50, 0);
             }
             rotate = new Vector3(0, 0, Rigid.velocity.y * 1.5f);
-            if (rotate.z > maxRotate)
+            if (rotate.z > maxRotate && !FindObjectOfType<changeScore>().hasControl)
             {
                 rotate.z = maxRotate;
             }
-            else if (rotate.z < -maxRotate)
+            else if (rotate.z < -maxRotate && !FindObjectOfType<changeScore>().hasControl)
             {
                 rotate.z = -maxRotate;
+            }
+            if (FindObjectOfType<changeScore>().hasControl)
+            {
+                rotate.z = 0;
             }
             transform.rotation = Quaternion.Euler(rotate);
             if (Rigid.velocity.magnitude > 5)
@@ -156,6 +165,8 @@ public class PlayerMove : MonoBehaviour
                 camSizeTarget = 5;
             }
             forceParent.gameObject.SetActive(!isDead);
+            anim.SetBool("isGrounded", isGrounded);
+            anim.SetInteger("diveAngle", Mathf.RoundToInt(rotate.z));
         }
         /*
         else
@@ -249,13 +260,17 @@ public class PlayerMove : MonoBehaviour
                 Rigid.velocity = new Vector3(Rigid.velocity.x, -25, 0);
             }
             rotate = new Vector3(0, 0, Rigid.velocity.y * 1.5f);
-            if (rotate.z > maxRotate)
+            if (rotate.z > maxRotate && !FindObjectOfType<changeScore>().hasControl)
             {
                 rotate.z = maxRotate;
             }
-            else if (rotate.z < -maxRotate)
+            else if (rotate.z < -maxRotate && !FindObjectOfType<changeScore>().hasControl)
             {
                 rotate.z = -maxRotate;
+            }
+            if (FindObjectOfType<changeScore>().hasControl)
+            {
+                rotate.z = 0;
             }
             transform.rotation = Quaternion.Euler(rotate);
             if (Rigid.velocity.magnitude > 5)
@@ -270,7 +285,9 @@ public class PlayerMove : MonoBehaviour
             {
                 camSizeTarget = 5;
             }
-        
+            print(Mathf.RoundToInt(rotate.z));
+            anim.SetInteger("diveAngle", Mathf.RoundToInt(rotate.z));
+            anim.SetBool("isGrounded", isGrounded);
         }
 
         
@@ -356,6 +373,13 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("floor"))
         {
             isGrounded = false;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("floor"))
+        {
+            isGrounded = true;
         }
     }
 }

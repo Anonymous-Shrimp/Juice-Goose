@@ -43,6 +43,7 @@ public class rewindManager : MonoBehaviour
             juice -= Time.deltaTime / juiceDecrease;
             rewind = true;
             FXWeight = 1;
+            
         }
         else
         {
@@ -55,6 +56,7 @@ public class rewindManager : MonoBehaviour
             juice = 1;
         }
         bar.value = juice;
+        player.gameObject.GetComponent<Animator>().enabled = !rewind;
     }
     
 }

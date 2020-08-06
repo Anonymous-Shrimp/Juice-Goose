@@ -93,6 +93,13 @@ MonoBehaviour:
     spawnRange: {x: 0, y: 28}
     offset: {x: 1000, y: 0, z: 0}
     spawn: -1000
+  - name: Floor
+    item: {fileID: 3684735810394667372, guid: 9d4f07834575eea4db6d180e8f6db45d, type: 3}
+    isGrounded: 0
+    freq: 20
+    spawnRange: {x: 0, y: 0}
+    offset: {x: 1000, y: 0, z: 0}
+    spawn: -1000
   player: {fileID: 0}
   dontSpawnZone: []
 --- !u!114 &8368545430948899749

@@ -17,6 +17,8 @@ public class TimeBody : MonoBehaviour
 
     private float forceAmmt = 0;
 
+    private Sprite sprite;
+
     // Use this for initialization
     void Start()
     {
@@ -57,6 +59,7 @@ public class TimeBody : MonoBehaviour
             if (GetComponent<PlayerMove>() != null)
             {
                 GetComponent<PlayerMove>().forceAmnt = pointInTime.forceAmmt;
+                GetComponent<SpriteRenderer>().sprite = pointInTime.sprite;
             }
             
             pointsInTime.RemoveAt(0);
@@ -77,12 +80,13 @@ public class TimeBody : MonoBehaviour
         if(GetComponent<PlayerMove>() != null)
         {
             forceAmmt = GetComponent<PlayerMove>().forceAmnt;
+            sprite = GetComponent<SpriteRenderer>().sprite;
         }
         else
         {
             forceAmmt = 0;
         }
-        pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity, forceAmmt));
+        pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity, forceAmmt, sprite));
     }
 
     public void StartRewind()

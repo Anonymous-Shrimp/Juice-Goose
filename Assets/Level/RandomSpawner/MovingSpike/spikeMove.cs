@@ -16,11 +16,13 @@ public class spikeMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(0.2f, 0.3f);
+
+        speed = Random.Range(5f, 12f);
         if (FindObjectOfType<rewindManager>() != null)
         {
             manager = FindObjectOfType<rewindManager>();
-        }else if (FindObjectOfType<menuRewind>() != null)
+        }
+        else if (FindObjectOfType<menuRewind>() != null)
         {
             managerMenu = FindObjectOfType<menuRewind>();
         }
@@ -37,7 +39,7 @@ public class spikeMove : MonoBehaviour
             }
             else
             {
-                cart.m_Position += speed;
+                cart.m_Position += speed * Time.deltaTime;
                 Record();
             }
         }
@@ -49,7 +51,7 @@ public class spikeMove : MonoBehaviour
             }
             else
             {
-                cart.m_Position += speed;
+                cart.m_Position += speed * Time.deltaTime;
                 Record();
             }
         }
