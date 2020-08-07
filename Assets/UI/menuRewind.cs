@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class menuRewind : MonoBehaviour
 {
@@ -19,9 +20,13 @@ public class menuRewind : MonoBehaviour
         {
             rewindFX.SetTrigger("Rewind");
         }
+        else
+        {
+        }
     }
     public void rewindFXAnim()
     {
         rewind = true;
+        
     }
 }

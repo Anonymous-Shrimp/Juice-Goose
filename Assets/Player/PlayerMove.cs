@@ -45,12 +45,14 @@ public class PlayerMove : MonoBehaviour
     public GameObject slurp;
     private ParticleSystem slurpParticle;
     public bool hardMode = true;
-    
-    
-
+    private bool upTouch = false;
+    private bool downTouch = false;
 
     [HideInInspector]
     public float forceAmnt = 0;
+    public bool upPress = false;
+    public bool downPress = false;
+    
 
 
     // Start is called before the first frame update
@@ -73,7 +75,41 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!(Rigid.velocity.y > -0.5f && Rigid.velocity.y < 0.5f))
+        upTouch = false;
+        downTouch = false;
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Vector3 touchPos = new Vector3(Input.touches[i].position.x / Screen.currentResolution.width - 0.2f, Input.touches[i].position.y / Screen.currentResolution.height - 0.2f);
+            if (touchPos.x > 0)
+            {
+                if (touchPos.y > 0)
+                {
+                    upTouch = true;
+                }
+                if (touchPos.y < 0)
+                {
+                    downTouch = true;
+                }
+            }
+        }
+        
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || downTouch)
+        {
+            downPress = true;
+        }
+        else
+        {
+            downPress = false;
+        }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || upTouch)
+        {
+            upPress = true;
+        }
+        else
+        {
+            upPress = false;
+        }
+        if (!(Rigid.velocity.y > -0.5f && Rigid.velocity.y < 0.5f))
         {
             isGrounded = false;
         }
@@ -94,15 +130,16 @@ public class PlayerMove : MonoBehaviour
         }
         if (hardMode)
         {
-            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) && !FindObjectOfType<changeScore>().hasControl))
+            
+            if ((downPress && !FindObjectOfType<changeScore>().hasControl))
             {
                 if (Rigid.velocity.x > 40)
                 {
-                    Rigid.AddForce(new Vector2(0, diveForce.y));
+                    Rigid.AddForce(new Vector2(0, diveForce.y * Time.deltaTime * 77.5f));
                 }
                 else
                 {
-                    Rigid.AddForce(diveForce);
+                    Rigid.AddForce(diveForce * Time.deltaTime * 77.5f);
                 }
 
                 forceAmnt += Time.deltaTime;
@@ -111,15 +148,15 @@ public class PlayerMove : MonoBehaviour
                     forceAmnt = forceCap;
                 }
             }
-            else if (forceAmnt > 0 && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && !FindObjectOfType<changeScore>().hasControl)
+            else if (forceAmnt > 0 && !downPress && !FindObjectOfType<changeScore>().hasControl)
             {
                 if (Rigid.velocity.x < 2)
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x / 4, flyForce.y));
+                    Rigid.AddForce(new Vector2(diveForce.x / 4 * Time.deltaTime * 77.5f, flyForce.y * Time.deltaTime * 77.5f));
                 }
                 else
                 {
-                    Rigid.AddForce(flyForce);
+                    Rigid.AddForce(flyForce * Time.deltaTime * 77.5f);
                 }
                 forceAmnt -= Time.deltaTime * 1.5f;
             }
@@ -131,7 +168,7 @@ public class PlayerMove : MonoBehaviour
                 }
                 else
                 {
-                    Rigid.AddForce(normalForce);
+                    Rigid.AddForce(normalForce * Time.deltaTime * 77.5f);
                 }
             }
             if (Rigid.velocity.y > 50)
@@ -163,6 +200,14 @@ public class PlayerMove : MonoBehaviour
             else
             {
                 camSizeTarget = 5;
+            }
+            if (Mathf.Abs(Rigid.velocity.y) > 4 && !FindObjectOfType<changeScore>().hasControl)
+            {
+                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 4) / 20));
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().changeVolume("Whoosh", 0);
             }
             forceParent.gameObject.SetActive(!isDead);
             anim.SetBool("isGrounded", isGrounded);
@@ -206,7 +251,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             forceParent.gameObject.SetActive(false);
-            if (Input.GetAxis("Vertical") < 0 && !FindObjectOfType<changeScore>().hasControl)
+            if (downPress && !FindObjectOfType<changeScore>().hasControl)
             {
                 /*
                 if(Rigid.velocity.y > 0)
@@ -216,14 +261,14 @@ public class PlayerMove : MonoBehaviour
                 */
                 if (Rigid.velocity.x > 40)
                 {
-                    Rigid.AddForce(new Vector2(0, diveForce.y * 3f));
+                    Rigid.AddForce(new Vector2(0, diveForce.y * 3f * Time.deltaTime * 77.5f));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x * 2, diveForce.y * 3f));
+                    Rigid.AddForce(new Vector2(diveForce.x * 2 * Time.deltaTime * 77.5f, diveForce.y * 3f * Time.deltaTime * 77.5f));
                 }
             }
-            else if (Input.GetAxis("Vertical") > 0 && !FindObjectOfType<changeScore>().hasControl)
+            else if (upPress && !FindObjectOfType<changeScore>().hasControl)
             {
                 /*
                 if (Rigid.velocity.y < 0)
@@ -233,11 +278,11 @@ public class PlayerMove : MonoBehaviour
                 */
                 if (Rigid.velocity.x < 2)
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x / 2, flyForce.y * 3f));
+                    Rigid.AddForce(new Vector2(diveForce.x / 2 * Time.deltaTime * 77.5f, flyForce.y * 3f * Time.deltaTime * 77.5f));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(flyForce.x, flyForce.y * 3f));
+                    Rigid.AddForce(new Vector2(flyForce.x * Time.deltaTime * 77.5f, flyForce.y * 3f * Time.deltaTime * 77.5f));
                 }
             }
             else
@@ -248,7 +293,7 @@ public class PlayerMove : MonoBehaviour
                 }
                 else
                 {
-                    Rigid.AddForce(normalForce);
+                    Rigid.AddForce(normalForce * Time.deltaTime * 77.5f);
                 }
             }
             if (Rigid.velocity.y > 25)
@@ -285,12 +330,19 @@ public class PlayerMove : MonoBehaviour
             {
                 camSizeTarget = 5;
             }
-            print(Mathf.RoundToInt(rotate.z));
+            if (Mathf.Abs(Rigid.velocity.y) > 4 && !FindObjectOfType<changeScore>().hasControl)
+            {
+                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 4) / 20));
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().changeVolume("Whoosh", 0);
+            }
             anim.SetInteger("diveAngle", Mathf.RoundToInt(rotate.z));
             anim.SetBool("isGrounded", isGrounded);
         }
 
-        
+        print(Rigid.velocity.y);
 
         
         if (isDead)
@@ -306,7 +358,7 @@ public class PlayerMove : MonoBehaviour
             Rigid.gravityScale = 0;
             gameObject.SetActive(false);
             FindObjectOfType<CameraShake>().ShakeIt();
-            
+            FindObjectOfType<AudioManager>().changeVolume("Whoosh", 0);
             if (rewind.juice <= 0)
             {
                 deathAnimation.SetTrigger("Open");
@@ -333,6 +385,7 @@ public class PlayerMove : MonoBehaviour
                 Destroy(feather.gameObject);
             }
             Rigid.gravityScale = 1;
+
         }
         forceBar.localScale = new Vector3(forceAmnt / forceCap,1,1);
         forceParent.localScale = new Vector3(cam.m_Lens.OrthographicSize / 3f, cam.m_Lens.OrthographicSize / 30, cam.m_Lens.OrthographicSize / 3);
@@ -345,6 +398,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Juice"))
         {
             rewind.juice += 0.3f;
+            rewind.bar.gameObject.GetComponent<Animator>().SetTrigger("pop");
             slurpParticle = Instantiate(slurp, collision.transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
             slurpParticle.Play();
             slurpParticle.loop = false;

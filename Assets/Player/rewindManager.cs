@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.Rendering.PostProcessing;
 
 public class rewindManager : MonoBehaviour
@@ -15,8 +16,14 @@ public class rewindManager : MonoBehaviour
     private float FXWeight = 0;
     private PlayerMove player;
     public float juiceDecrease = 5;
+
+    private bool rewindTouch = false;
+    
+
     [HideInInspector]
     public float juice = 1;
+
+    public bool rewindPress = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +35,27 @@ public class rewindManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(FX.weight > FXWeight)
+
+        rewindTouch = false;
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Vector3 touchPos = new Vector3(Input.touches[i].position.x / Screen.currentResolution.width - 0.2f, Input.touches[i].position.y / Screen.currentResolution.height - 0.2f);
+            print(touchPos);
+            if (touchPos.x < 0)
+            {
+                rewindTouch = true;
+            }  
+            
+        }
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || rewindTouch)
+        {
+            rewindPress = true;
+        }
+        else
+        {
+            rewindPress = false;
+        }
+        if (FX.weight > FXWeight)
         {
             FX.weight -= Time.deltaTime;
         }
@@ -36,7 +63,7 @@ public class rewindManager : MonoBehaviour
         {
             FX.weight += Time.deltaTime;
         }
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && juice > 0 && !FindObjectOfType<changeScore>().hasControl)
+        if (rewindPress && juice > 0 && !FindObjectOfType<changeScore>().hasControl)
         {
             player.gameObject.SetActive(true);
             player.isDead = false;
@@ -57,6 +84,7 @@ public class rewindManager : MonoBehaviour
         }
         bar.value = juice;
         player.gameObject.GetComponent<Animator>().enabled = !rewind;
+        FindObjectOfType<PauseUI>().lowPassRewind = rewind;
     }
     
 }

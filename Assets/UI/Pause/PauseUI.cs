@@ -12,6 +12,8 @@ public class PauseUI : MonoBehaviour
     public int lowPassNormal = 5000;
 
     public int lowPassPaused = 600;
+    public bool lowPass = false;
+    public bool lowPassRewind = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,19 +34,27 @@ public class PauseUI : MonoBehaviour
                 {
                     pauseUI.SetActive(true);
                     Time.timeScale = 0;
-                    audioGroup.SetFloat("pauseLowPass", lowPassPaused);
+                    lowPass = true;
                 }
                 else
                 {
                     pauseUI.SetActive(false);
                     Time.timeScale = 1;
-                    audioGroup.SetFloat("pauseLowPass", lowPassNormal);
+                    lowPass = false;
                 }
             }
         }
         else
         {
             isPaused = false;
+        }
+        if(lowPassRewind || lowPass)
+        {
+            audioGroup.SetFloat("pauseLowPass", lowPassPaused);
+        }
+        else
+        {
+            audioGroup.SetFloat("pauseLowPass", lowPassNormal);
         }
     }
     
