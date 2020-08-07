@@ -60,18 +60,17 @@ public class PauseUI : MonoBehaviour
     
     public void boolPause(bool pauser)
     {
-        isPaused = pauser;
-        if (isPaused)
+        if (pauser)
         {
             pauseUI.SetActive(true);
-            audioGroup.SetFloat("pauseLowPass", lowPassPaused);
             Time.timeScale = 0;
+            lowPass = true;
         }
         else
         {
             pauseUI.SetActive(false);
-            audioGroup.SetFloat("pauseLowPass", lowPassNormal);
             Time.timeScale = 1;
+            lowPass = false;
         }
     }
 }

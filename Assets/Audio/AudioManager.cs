@@ -33,7 +33,8 @@ public class AudioManager : MonoBehaviour
                 Play(s.name);
             }
 		}
-	}
+        changeVolume("Whoosh", 0);
+    }
 
 	public void Play(string sound)
 	{

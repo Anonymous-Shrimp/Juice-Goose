@@ -383,7 +383,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (rewindAnimation.GetBool("RewindFadedIn"))
             {
-                rewindAnimation.SetBool("RewindFadedIn", isDead);
+                rewindAnimation.SetBool("RewindFadedIn", false);
             }
             Rigid.constraints = RigidbodyConstraints2D.None;
             if (death != null)
