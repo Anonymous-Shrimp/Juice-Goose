@@ -5152,7 +5152,7 @@ GameObject:
   - component: {fileID: 1781713983}
   - component: {fileID: 1781713982}
   m_Layer: 5
-  m_Name: Start
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
