@@ -26,7 +26,7 @@ public class Score : MonoBehaviour
             {
                 score = 0;
             }
-            scoreText.text = score.ToString();
+            scoreText.text = score.ToString() + " m";
 
         }
     }

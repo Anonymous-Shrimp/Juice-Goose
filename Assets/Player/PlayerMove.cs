@@ -330,7 +330,7 @@ public class PlayerMove : MonoBehaviour
             anim.SetInteger("diveAngle", Mathf.RoundToInt(rotate.z));
             anim.SetBool("isGrounded", isGrounded);
         }
-        print(Rigid.velocity.magnitude);
+
 
         if (Rigid.velocity.magnitude > 30 && !FindObjectOfType<changeScore>().hasControl)
         {

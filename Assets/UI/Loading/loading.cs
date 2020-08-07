@@ -26,7 +26,7 @@ public class loading : MonoBehaviour
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
         yield return new WaitForSeconds(1);
-        if (!(SceneManager.GetActiveScene().buildIndex == 0))
+        if (!(SceneManager.GetActiveScene().buildIndex == 1))
         {
             pause.boolPause(false);
         }
