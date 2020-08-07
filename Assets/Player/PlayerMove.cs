@@ -201,9 +201,9 @@ public class PlayerMove : MonoBehaviour
             {
                 camSizeTarget = 5;
             }
-            if (Mathf.Abs(Rigid.velocity.y) > 4 && !FindObjectOfType<changeScore>().hasControl)
+            if (Mathf.Abs(Rigid.velocity.y) > 20 && !FindObjectOfType<changeScore>().hasControl)
             {
-                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 4) / 20));
+                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 20) / 10));
             }
             else
             {
@@ -261,11 +261,11 @@ public class PlayerMove : MonoBehaviour
                 */
                 if (Rigid.velocity.x > 40)
                 {
-                    Rigid.AddForce(new Vector2(0, diveForce.y * 3f * Time.deltaTime * 77.5f));
+                    Rigid.AddForce(new Vector2(0, diveForce.y * 3f * Time.deltaTime * 70));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x * 2 * Time.deltaTime * 77.5f, diveForce.y * 3f * Time.deltaTime * 77.5f));
+                    Rigid.AddForce(new Vector2(diveForce.x * 2 * Time.deltaTime * 77.5f, diveForce.y * 3f * Time.deltaTime * 70));
                 }
             }
             else if (upPress && !FindObjectOfType<changeScore>().hasControl)
@@ -278,11 +278,11 @@ public class PlayerMove : MonoBehaviour
                 */
                 if (Rigid.velocity.x < 2)
                 {
-                    Rigid.AddForce(new Vector2(diveForce.x / 2 * Time.deltaTime * 77.5f, flyForce.y * 3f * Time.deltaTime * 77.5f));
+                    Rigid.AddForce(new Vector2(diveForce.x / 2 * Time.deltaTime * 77.5f, flyForce.y * 3f * Time.deltaTime * 70));
                 }
                 else
                 {
-                    Rigid.AddForce(new Vector2(flyForce.x * Time.deltaTime * 77.5f, flyForce.y * 3f * Time.deltaTime * 77.5f));
+                    Rigid.AddForce(new Vector2(flyForce.x * Time.deltaTime * 77.5f, flyForce.y * 3f * Time.deltaTime * 70));
                 }
             }
             else
@@ -293,14 +293,14 @@ public class PlayerMove : MonoBehaviour
                 }
                 else
                 {
-                    Rigid.AddForce(normalForce * Time.deltaTime * 77.5f);
+                    Rigid.AddForce(normalForce * Time.deltaTime * 70);
                 }
             }
-            if (Rigid.velocity.y > 25)
+            if (Rigid.velocity.y > 40)
             {
                 Rigid.velocity = new Vector3(Rigid.velocity.x, 25, 0);
             }
-            else if (Rigid.velocity.y < -25)
+            else if (Rigid.velocity.y < -40)
             {
                 Rigid.velocity = new Vector3(Rigid.velocity.x, -25, 0);
             }
@@ -330,9 +330,9 @@ public class PlayerMove : MonoBehaviour
             {
                 camSizeTarget = 5;
             }
-            if (Mathf.Abs(Rigid.velocity.y) > 4 && !FindObjectOfType<changeScore>().hasControl)
+            if (Mathf.Abs(Rigid.velocity.y) > 20 && !FindObjectOfType<changeScore>().hasControl)
             {
-                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 4) / 20));
+                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 20) / 10));
             }
             else
             {
