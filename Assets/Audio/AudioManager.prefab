@@ -66,3 +66,25 @@ MonoBehaviour:
     mixerGroup: {fileID: 6748832589435425148, guid: f343a833e977da34ea2544fbdbe66d6a,
       type: 2}
     source: {fileID: 0}
+  - name: Flap
+    clip: {fileID: 8300000, guid: 5168f56e96311c944b7b571e13aeab8c, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 6748832589435425148, guid: f343a833e977da34ea2544fbdbe66d6a,
+      type: 2}
+    source: {fileID: 0}
+  - name: Whoosh
+    clip: {fileID: 8300000, guid: e3c59c3047bedf342957c3244ac6626c, type: 3}
+    volume: 0.434
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.2
+    loop: 1
+    playOnAwake: 1
+    mixerGroup: {fileID: 6748832589435425148, guid: f343a833e977da34ea2544fbdbe66d6a,
+      type: 2}
+    source: {fileID: 0}

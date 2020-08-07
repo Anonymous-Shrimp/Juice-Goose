@@ -57,6 +57,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+        /*
         if(volume > 1)
         {
             volume = 1;
@@ -64,7 +65,8 @@ public class AudioManager : MonoBehaviour
         {
             volume = 0;
         }
-        s.source.volume = volume;
+        */
+        s.source.volume = volume * s.volume;
     }
 
 }

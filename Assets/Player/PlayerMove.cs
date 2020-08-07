@@ -47,6 +47,8 @@ public class PlayerMove : MonoBehaviour
     public bool hardMode = true;
     private bool upTouch = false;
     private bool downTouch = false;
+    public Sprite flapImage;
+    private bool playedFlap = false;
 
     [HideInInspector]
     public float forceAmnt = 0;
@@ -201,14 +203,7 @@ public class PlayerMove : MonoBehaviour
             {
                 camSizeTarget = 5;
             }
-            if (Mathf.Abs(Rigid.velocity.y) > 20 && !FindObjectOfType<changeScore>().hasControl)
-            {
-                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 20) / 10));
-            }
-            else
-            {
-                FindObjectOfType<AudioManager>().changeVolume("Whoosh", 0);
-            }
+            
             forceParent.gameObject.SetActive(!isDead);
             anim.SetBool("isGrounded", isGrounded);
             anim.SetInteger("diveAngle", Mathf.RoundToInt(rotate.z));
@@ -330,21 +325,36 @@ public class PlayerMove : MonoBehaviour
             {
                 camSizeTarget = 5;
             }
-            if (Mathf.Abs(Rigid.velocity.y) > 20 && !FindObjectOfType<changeScore>().hasControl)
-            {
-                FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Mathf.Abs(Rigid.velocity.y - 20) / 10));
-            }
-            else
-            {
-                FindObjectOfType<AudioManager>().changeVolume("Whoosh", 0);
-            }
+           
+            
             anim.SetInteger("diveAngle", Mathf.RoundToInt(rotate.z));
             anim.SetBool("isGrounded", isGrounded);
         }
+        print(Rigid.velocity.magnitude);
 
-        print(Rigid.velocity.y);
+        if (Rigid.velocity.magnitude > 30 && !FindObjectOfType<changeScore>().hasControl)
+        {
+            FindObjectOfType<AudioManager>().changeVolume("Whoosh", (Rigid.velocity.magnitude - 30) / 10);
+           
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().changeVolume("Whoosh", 0);
+        }
 
-        
+        if(GetComponent<SpriteRenderer>().sprite == flapImage)
+        {
+            if (!playedFlap)
+            {
+                FindObjectOfType<AudioManager>().Play("Flap");
+                playedFlap = true;
+            }
+        }
+        else
+        {
+            playedFlap = false;
+        }
+
         if (isDead)
         {
 

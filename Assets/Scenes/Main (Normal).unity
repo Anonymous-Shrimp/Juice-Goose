@@ -1037,7 +1037,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2815,6 +2815,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   slurp: {fileID: 2912669216638973629, guid: 96f91240d6356e041b80273675f6cb61, type: 3}
   hardMode: 0
+  flapImage: {fileID: 21300000, guid: 088ede30159377e4980026f5b1fc329c, type: 3}
   forceAmnt: 0
   upPress: 0
   downPress: 0
@@ -3604,7 +3605,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4134,80 +4135,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
         type: 3}
-      propertyPath: sounds.Array.size
-      value: 4
+      propertyPath: sounds.Array.data[2].pitchVariance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
         type: 3}
-      propertyPath: sounds.Array.data[2].name
-      value: Flap
+      propertyPath: sounds.Array.data[2].volumeVariance
+      value: 0.58
       objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 24a974d8bf439434e93ae8fca25e10ea, type: 3}
     - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
         type: 3}
       propertyPath: sounds.Array.data[2].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[2].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[2].pitchVariance
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[2].mixerGroup
-      value: 
-      objectReference: {fileID: 6748832589435425148, guid: f343a833e977da34ea2544fbdbe66d6a,
-        type: 2}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].name
-      value: Whoosh
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: e3c59c3047bedf342957c3244ac6626c, type: 3}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].pitchVariance
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].mixerGroup
-      value: 
-      objectReference: {fileID: 6748832589435425148, guid: f343a833e977da34ea2544fbdbe66d6a,
-        type: 2}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623856835058684287, guid: 867485ec1a17fe94190939cab325fc92,
-        type: 3}
-      propertyPath: sounds.Array.data[3].playOnAwake
-      value: 1
+      value: 0.647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 867485ec1a17fe94190939cab325fc92, type: 3}
