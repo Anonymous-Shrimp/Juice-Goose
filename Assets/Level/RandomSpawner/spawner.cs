@@ -63,7 +63,7 @@ public class spawner : MonoBehaviour
     public GameObject player;
     public List<float> dontSpawnZone;
     // Start is called before the first frame update
-    void Start()
+    void Start( )
     {
         player = FindObjectOfType<PlayerMove>().gameObject;
         foreach (spawnItems i in items)
